@@ -91,9 +91,9 @@ namespace RPSLS {
 				static_cast<System::Byte>(238)));
 			this->lblData->Location = System::Drawing::Point(12, 9);
 			this->lblData->Name = L"lblData";
-			this->lblData->Size = System::Drawing::Size(152, 59);
+			this->lblData->Size = System::Drawing::Size(149, 59);
 			this->lblData->TabIndex = 2;
-			this->lblData->Text = L"Wynik";
+			this->lblData->Text = L"Result";
 			// 
 			// Result
 			// 

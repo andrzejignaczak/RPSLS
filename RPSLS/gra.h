@@ -3,7 +3,6 @@
 #include "logika.h"
 #include "Result.h"
 
-
 namespace RPSLS {
 
 	using namespace System;
@@ -29,10 +28,6 @@ namespace RPSLS {
 	private: System::Windows::Forms::ToolStripMenuItem^ windowToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ fixedWindowToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ exitToolStripMenuItem;
-
-
-
-
 
 	private: System::Windows::Forms::Label^ label1;
 
@@ -203,7 +198,7 @@ namespace RPSLS {
 			// 
 			this->pictureGracz->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->pictureGracz->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureGracz.Image")));
-			this->pictureGracz->Location = System::Drawing::Point(29, 27);
+			this->pictureGracz->Location = System::Drawing::Point(12, 27);
 			this->pictureGracz->Name = L"pictureGracz";
 			this->pictureGracz->Size = System::Drawing::Size(250, 250);
 			this->pictureGracz->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
@@ -399,21 +394,21 @@ namespace RPSLS {
 			// windowToolStripMenuItem
 			// 
 			this->windowToolStripMenuItem->Name = L"windowToolStripMenuItem";
-			this->windowToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->windowToolStripMenuItem->Size = System::Drawing::Size(147, 22);
 			this->windowToolStripMenuItem->Text = L"Window";
 			this->windowToolStripMenuItem->Click += gcnew System::EventHandler(this, &gra::windowToolStripMenuItem_Click);
 			// 
 			// fixedWindowToolStripMenuItem
 			// 
 			this->fixedWindowToolStripMenuItem->Name = L"fixedWindowToolStripMenuItem";
-			this->fixedWindowToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->fixedWindowToolStripMenuItem->Size = System::Drawing::Size(147, 22);
 			this->fixedWindowToolStripMenuItem->Text = L"Fixed window";
 			this->fixedWindowToolStripMenuItem->Click += gcnew System::EventHandler(this, &gra::fixedWindowToolStripMenuItem_Click);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
-			this->exitToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->exitToolStripMenuItem->Size = System::Drawing::Size(147, 22);
 			this->exitToolStripMenuItem->Text = L"Exit";
 			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &gra::exitToolStripMenuItem_Click);
 			// 
