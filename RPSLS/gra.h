@@ -17,7 +17,8 @@ namespace RPSLS {
 	/// </summary>
 	public ref class gra : public System::Windows::Forms::Form
 	{
-	private: System::Windows::Forms::Label^ playerName;
+	private: System::Windows::Forms::Label^ lblPlayerName;
+
 	private: System::Windows::Forms::Button^ changeName;
 	private: System::Windows::Forms::TextBox^ txtBoxPlayerName;
 	private: System::Windows::Forms::Label^ label3;
@@ -101,7 +102,7 @@ namespace RPSLS {
 			this->reset = (gcnew System::Windows::Forms::Button());
 			this->newGame = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->playerName = (gcnew System::Windows::Forms::Label());
+			this->lblPlayerName = (gcnew System::Windows::Forms::Label());
 			this->changeName = (gcnew System::Windows::Forms::Button());
 			this->txtBoxPlayerName = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
@@ -301,16 +302,16 @@ namespace RPSLS {
 			this->label1->TabIndex = 14;
 			this->label1->Text = L"-";
 			// 
-			// playerName
+			// lblPlayerName
 			// 
-			this->playerName->AutoSize = true;
-			this->playerName->Font = (gcnew System::Drawing::Font(L"Calibri", 21.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->lblPlayerName->AutoSize = true;
+			this->lblPlayerName->Font = (gcnew System::Drawing::Font(L"Calibri", 21.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
-			this->playerName->Location = System::Drawing::Point(77, 280);
-			this->playerName->Name = L"playerName";
-			this->playerName->Size = System::Drawing::Size(0, 36);
-			this->playerName->TabIndex = 7;
-			this->playerName->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			this->lblPlayerName->Location = System::Drawing::Point(40, 280);
+			this->lblPlayerName->Name = L"lblPlayerName";
+			this->lblPlayerName->Size = System::Drawing::Size(0, 36);
+			this->lblPlayerName->TabIndex = 7;
+			this->lblPlayerName->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// changeName
 			// 
@@ -364,7 +365,7 @@ namespace RPSLS {
 			this->txtWynik->Font = (gcnew System::Drawing::Font(L"Calibri", 21.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
 			this->txtWynik->ForeColor = System::Drawing::SystemColors::WindowText;
-			this->txtWynik->Location = System::Drawing::Point(13, 318);
+			this->txtWynik->Location = System::Drawing::Point(13, 320);
 			this->txtWynik->Margin = System::Windows::Forms::Padding(4);
 			this->txtWynik->Name = L"txtWynik";
 			this->txtWynik->ReadOnly = true;
@@ -377,7 +378,7 @@ namespace RPSLS {
 			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->fileToolStripMenuItem });
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(699, 24);
+			this->menuStrip1->Size = System::Drawing::Size(697, 24);
 			this->menuStrip1->TabIndex = 20;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -418,7 +419,7 @@ namespace RPSLS {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::CadetBlue;
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
-			this->ClientSize = System::Drawing::Size(699, 511);
+			this->ClientSize = System::Drawing::Size(697, 509);
 			this->Controls->Add(this->txtWynik);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->label3);
@@ -431,7 +432,7 @@ namespace RPSLS {
 			this->Controls->Add(this->lblLicznikK);
 			this->Controls->Add(this->lblLicznikG);
 			this->Controls->Add(this->label2);
-			this->Controls->Add(this->playerName);
+			this->Controls->Add(this->lblPlayerName);
 			this->Controls->Add(this->pictureKomputer);
 			this->Controls->Add(this->pictureGracz);
 			this->Controls->Add(this->spock);
@@ -462,7 +463,7 @@ namespace RPSLS {
 		if (logika->koniec() == 1)
 		{
 			//MessageBox::Show("Wygra³o A.I.!\n" + lblLicznikK->Text + " : " + lblLicznikG->Text, "RPLS - Andrzej Ignaczak", MessageBoxButtons::OK, MessageBoxIcon::Stop);
-			Result^ res = gcnew Result(logika->koniec(), logika->getLicznikG().ToString(), logika->getLicznikK().ToString(), playerName->Text);
+			Result^ res = gcnew Result(logika->koniec(), logika->getLicznikG().ToString(), logika->getLicznikK().ToString(), lblPlayerName->Text);
 			res->ShowDialog();
 			logika->reset_func();
 			lblLicznikG->Text = logika->getLicznikG().ToString();
@@ -474,7 +475,7 @@ namespace RPSLS {
 		if (logika->koniec() == 2)
 		{
 			//MessageBox::Show("Wygra³ gracz " + playerName->Text + "!\n" + lblLicznikG->Text + " : " + lblLicznikK->Text, "RPLS - Andrzej Ignaczak", MessageBoxButtons::OK, MessageBoxIcon::Information);
-			Result^ res = gcnew Result(logika->koniec(), lblLicznikG->Text, lblLicznikK->Text, playerName->Text);
+			Result^ res = gcnew Result(logika->koniec(), lblLicznikG->Text, lblLicznikK->Text, lblPlayerName->Text);
 			res->ShowDialog();
 			logika->reset_func();
 			lblLicznikG->Text = logika->getLicznikG().ToString();
@@ -523,7 +524,7 @@ namespace RPSLS {
 		pictureGracz->Image = imageList1->Images[logika->getWyborGracza()];
 		pictureKomputer->Image = imageList1->Images[logika->getLosowaCyfra()];
 		buttonsDisable();
-		txtWynik->Text = gcnew String(logika->porownaj().c_str());
+		txtWynik->Text = gcnew String(logika->porownaj());
 		lblLicznikG->Text = logika->getLicznikG().ToString();
 		lblLicznikK->Text = logika->getLicznikK().ToString();
 		warunek();
@@ -559,7 +560,11 @@ namespace RPSLS {
 		   //==================================================================================================
 	private: System::Void plyerName_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		playerName->Text = txtBoxPlayerName->Text;
+		//playerName->Text = txtBoxPlayerName->Text;
+		String^ imie = txtBoxPlayerName->Text;
+		logika->setImieGracza(imie);
+		lblPlayerName->Text = logika->getImieGracza();
+
 		gra::Width = 715;
 		gra::Height = 550;
 		buttonsEnable();

@@ -1,6 +1,8 @@
 #include "logika.h"
 #include <string>
 
+using namespace System;
+
 int Logika::getLicznikG() {
 	return licznikG;
 }
@@ -12,6 +14,16 @@ int Logika::getLicznikK() {
 int Logika::setWyborGracza(int GraczKlik) {
 	wyborGracza = GraczKlik;
 	return 0;
+}
+
+void Logika::setImieGracza(String^ imie)
+{
+	imieGracza = imie;
+}
+
+String^ Logika::getImieGracza()
+{
+	return imieGracza;
 }
 	
 int Logika::getWyborGracza(){
@@ -39,8 +51,8 @@ int Logika::koniec() {
 	return 0;
 }
 
-std::string Logika::porownaj() {
-    std::string wynik;
+String^ Logika::porownaj() {
+	String^ wynik;
 	if (wyborGracza == losowaCyfra) {
 		wynik = "Tie!";
 	}
