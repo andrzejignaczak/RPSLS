@@ -2,13 +2,13 @@
 #define LOGIKA_H
 #include <string>
 
-value class Logika
+public ref class Logika
 {
 private:
-    int licznikG;
-    int licznikK;
-    int wyborGracza;
-    int losowaCyfra;
+    int licznikG=0;
+    int licznikK=0;
+    int wyborGracza=0;
+    int losowaCyfra=0;
  
 public:
     std::string porownaj();

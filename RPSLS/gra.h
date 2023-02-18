@@ -37,7 +37,7 @@ namespace RPSLS {
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
-			this->logika = new Logika();
+			this->logika = gcnew Logika();
 			//
 		}
 
@@ -51,7 +51,7 @@ namespace RPSLS {
 			{
 				delete this->logika;
 			}
-			this->logika = 0;
+			this->logika = nullptr; 
 		}
 
 	private: System::Windows::Forms::Button^ rock;
@@ -72,7 +72,7 @@ namespace RPSLS {
 	private: System::ComponentModel::IContainer^ components;
 
 	private:
-		Logika* logika;
+		Logika^ logika;
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -462,7 +462,7 @@ namespace RPSLS {
 		if (logika->koniec() == 1)
 		{
 			//MessageBox::Show("Wygra³o A.I.!\n" + lblLicznikK->Text + " : " + lblLicznikG->Text, "RPLS - Andrzej Ignaczak", MessageBoxButtons::OK, MessageBoxIcon::Stop);
-			Result^ res = gcnew Result(logika->koniec(), lblLicznikG->Text, lblLicznikK->Text, playerName->Text);
+			Result^ res = gcnew Result(logika->koniec(), logika->getLicznikG().ToString(), logika->getLicznikK().ToString(), playerName->Text);
 			res->ShowDialog();
 			logika->reset_func();
 			lblLicznikG->Text = logika->getLicznikG().ToString();
@@ -595,3 +595,4 @@ namespace RPSLS {
 	}
 };
 }
+//dodac imie do kalsy i aktualizowac pierwsza strone.
