@@ -2,6 +2,9 @@
 #include "help.h"
 #include "logika.h"
 #include "Result.h"
+#include <msclr\marshal_cppstd.h>
+
+
 
 namespace RPSLS {
 
@@ -11,6 +14,7 @@ namespace RPSLS {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace msclr::interop;
 
 	/// <summary>
 	/// Summary for gra
@@ -38,7 +42,7 @@ namespace RPSLS {
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
-			this->logika = gcnew Logika();
+			this->logika = new Logika();
 			//
 		}
 
@@ -73,7 +77,7 @@ namespace RPSLS {
 	private: System::ComponentModel::IContainer^ components;
 
 	private:
-		Logika^ logika;
+		Logika* logika;
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -378,7 +382,7 @@ namespace RPSLS {
 			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->fileToolStripMenuItem });
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(697, 24);
+			this->menuStrip1->Size = System::Drawing::Size(699, 24);
 			this->menuStrip1->TabIndex = 20;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -419,7 +423,7 @@ namespace RPSLS {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::CadetBlue;
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
-			this->ClientSize = System::Drawing::Size(697, 509);
+			this->ClientSize = System::Drawing::Size(699, 511);
 			this->Controls->Add(this->txtWynik);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->label3);
@@ -524,7 +528,7 @@ namespace RPSLS {
 		pictureGracz->Image = imageList1->Images[logika->getWyborGracza()];
 		pictureKomputer->Image = imageList1->Images[logika->getLosowaCyfra()];
 		buttonsDisable();
-		txtWynik->Text = gcnew String(logika->porownaj());
+		txtWynik->Text = gcnew String(logika->porownaj().c_str());
 		lblLicznikG->Text = logika->getLicznikG().ToString();
 		lblLicznikK->Text = logika->getLicznikK().ToString();
 		warunek();
@@ -560,11 +564,8 @@ namespace RPSLS {
 		   //==================================================================================================
 	private: System::Void plyerName_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		//playerName->Text = txtBoxPlayerName->Text;
-		String^ imie = txtBoxPlayerName->Text;
-		logika->setImieGracza(imie);
-		lblPlayerName->Text = logika->getImieGracza();
-
+		this->logika->setImieGracza(marshal_as<std::string>(this->txtBoxPlayerName->Text));
+		this->lblPlayerName->Text = gcnew String(this->logika->getImieGracza().c_str());
 		gra::Width = 715;
 		gra::Height = 550;
 		buttonsEnable();
@@ -577,7 +578,7 @@ namespace RPSLS {
 	private: System::Void help_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		help^ Onas = gcnew help();
-		Onas->Show();
+		Onas->ShowDialog();
 	}
 		   //==================================================================================================
 	private: System::Void windowToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)

@@ -1,20 +1,25 @@
 #ifndef LOGIKA_H
 #define LOGIKA_H
 #include <string>
+#include <marshal.h>
 
 using namespace System;
 
-public ref class Logika
-{
-private:
-    int licznikG = 0;
-    int licznikK = 0;
-    int wyborGracza = 0;
-    int losowaCyfra = 0;
-    String^ imieGracza; 
 
+class Logika
+{
+
+// ==== Zmienne prywatne: ====
+private:
+    int licznikG;
+    int licznikK;
+    int wyborGracza;
+    int losowaCyfra;
+    std::string imieGracza;
+
+// ==== Funkcje publiczne: ====
 public:
-    String^ porownaj(); 
+    std::string porownaj();
     void reset_func();
     int getLicznikG();
     int getLicznikK();
@@ -22,8 +27,8 @@ public:
     int getWyborGracza();
     int getLosowaCyfra();
     int setWyborGracza(int GraczKlik);
-    void setImieGracza(String^ imie); 
-    String^ getImieGracza(); 
+    std::string setImieGracza(std::string imie);
+    std::string getImieGracza(); 
 };
 
 #endif

@@ -16,12 +16,13 @@ int Logika::setWyborGracza(int GraczKlik) {
 	return 0;
 }
 
-void Logika::setImieGracza(String^ imie)
+std::string Logika::setImieGracza(std::string imie)
 {
 	imieGracza = imie;
+	return imieGracza;
 }
 
-String^ Logika::getImieGracza()
+std::string Logika::getImieGracza()
 {
 	return imieGracza;
 }
@@ -51,8 +52,8 @@ int Logika::koniec() {
 	return 0;
 }
 
-String^ Logika::porownaj() {
-	String^ wynik;
+std::string Logika::porownaj() {
+	std::string wynik;
 	if (wyborGracza == losowaCyfra) {
 		wynik = "Tie!";
 	}
